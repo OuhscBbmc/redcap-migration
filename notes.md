@@ -5,7 +5,8 @@ Migration
 
 * overview of migration ~5 min
 * local to local migration ~5
-* local to cloud migration ~5
+* local to cloud migration preview ~2
+  * essentially a plug for [REDCap & Azure](https://redcap.vanderbilt.edu/surveys/?__report=RPK8CL8NETYCXEYK) presentation
 * themes overall lessons ~10
 * questions ~5
 
@@ -58,3 +59,9 @@ Themes
     * decide if you're ready to go online
       * if yes: go online
       * if not: point to old hardware's IP address (and turn it back on)
+
+Links
+---------
+
+* [tentative schedule](https://redcap.vanderbilt.edu/surveys/?__report=RPK8CL8NETYCXEYK)
+* [about REDCapCon](https://projectredcap.org/about/redcapcon/)
