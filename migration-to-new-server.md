@@ -56,6 +56,55 @@ Today's definition of "migration"
     * See Greg's Azure migration presentation
   * url of the server, possibly
 
+First establish stack underneath REDCap
+-------------------
+
+* Create VMs for database & web server (and optional token server)
+* Install Apache (on the web server)
+* Install PHP (on the web server)
+* Install MariaDB (on the db server)
+* Edocs storage
+* Requests to Campus IT for networking
+  * firewall exception for `prod-2-web` to `prod-2-db`
+  * firewall exception for `prod-2-web` to REDCap's Community site (to download upgrades)
+  * firewall exception for `prod-2-web` to the Edocs location.
+  * firewall exception for `token-guide-1` to `prod-2-db` (optional -- for token server below)
+  * load balancer   -- but wait until both servers are secured for PHI!
+
+* Strategy for transferring files
+
+  * You may need to move some new files to both RHEL servers, such as the (a) REDCap installation files to the web server, (b) SQL scripts to install & upgrade the database, and (c) configuration files.
+  * It is a small security risk to allow the servers to access a bunch of external servers.  It's also tedious to submit a ticket for each new firewall exception.
+  * Instead, use your local desktop as the middleman.  Download the files to your desktop first, and then transfer them to the server with a protocol like [scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).  If the local machine is Windows, a program like [WinSCP](https://winscp.net/eng/index.php) makes this an easy drag & drop.
+
+* Install GNOME (optional)
+
+  * Institutions staffed with enough Linux experts will not need a desktop environment.
+    But if the REDCap admins are coming from Windows,
+    something like [GNOME](https://www.gnome.org/) may be desirable.
+  * Installing a desktop environment increases the vulnerability surface and therefore theoretically increases risk.
+    (Like installing almost any additional software.)
+    But that risk is probably minimal.
+  * On the other hand, those uncomfortable with command line administration will be more productive initially
+    because the visual metaphors will be familiar to them.
+    Furthermore, a desktop environment might *decrease* the practical risk among new Linux admins,
+    because they'll be less likely to make mistakes
+    (eg, moving a sensitive file into the wrong directory).
+
+* Install DBeaver (assuming on some RHEL VM)
+
+  * Alternatives are [phpMyAdmin](https://www.phpmyadmin.net/) and the basic
+    [MySQL Command Line Client](https://dev.mysql.com/doc/refman/8.0/en/mysql.html).
+    It won't be used much after the server is deployed unless you're doing a lot of unconventional development.
+  * Install the Java prereq: `sudo dnf install java-11-openjdk`
+  * Install DBeaver: `sudo rpm -i dbeaver-ce-*-stable.x86_64.rpm`
+  * Install JDBC driver
+    * [Download](https://mariadb.com/kb/en/about-mariadb-connector-j/) the latest MariaDB J connector on a local machine
+    * Transfer to db server with scp.
+    * Within DBeaver's "Driver settings" connection dialog box, point to the new jar.
+  * Depending on the host VM, a firewall exception might be necessary.
+
+
 Themes & Takeaways
 -------------
 
