@@ -3,7 +3,7 @@ Migrating Existing REDCap Instance to New Server
 
 * REDCapCon Sept 2023, Seatle WA
 * Will Beasley, Thomas Wilson, Caxton Muchano, University of Oklahoma Health Science Center
-* Patrick Sandin, University of Oklahoma IT
+* Patrick Sandin, April Dickson, University of Oklahoma IT
 * Greg Neils, MGB
 
 This presentation is a summary of the detailed instructions at
@@ -27,15 +27,16 @@ Background
   (At OU, a research group is responsible for REDCap,
   and IT helps with the stack underneath.)
 
-* !! Please think about the security & authentication involved and the vulnerable transitions between
+* !! Please consider the security & authentication involved and the vulnerable transitions between
   (a) your existing server,
   (b) the stub database on the new instance, and
   (c) the migrated database on the new instance.
 
-* All Universities have different environments.
+* All institutions have different environments.
   Please review your migration plan with your campus's security team beforehand.
   For instance,
-  it would be very bad to migrate a database full of PHI to a web server that hadn't been secured first.
+  it would be very bad to migrate a database full of PHI
+  that's connected to a web server that hadn't been secured first.
 
 * We'll cover migrating from a local server to another local server.
   See Greg & MGB's later presentation on unique challenges of migrating to Azure.
@@ -101,18 +102,21 @@ Cons of desktop environment:
 
 Pros of desktop environment:
 
-* On the other hand, people who are uncomfortable with command line administration will be more productive initially
+* People who are uncomfortable with command line administration will be more productive initially
   because the visual metaphors will be familiar to them.
-* Furthermore, a desktop environment might *decrease* the practical risk among new Linux admins,
+* A desktop environment might *decrease* the practical risk among new Linux admins,
   because they'll be less likely to make mistakes
   (eg, moving a sensitive file into the wrong directory).
 
 Separate "Upgrade" and "Migrate":
 ------------
+
+* Reason: don't change two things at once.
 * Don't upgrade & migrate in the same step (eg, from v13.1.0 on local to v14.1.0 in the cloud)
 * Ideally upgrade your old instance before migrating
-* If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems
-*
+* If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems.
+* Remember that REDCap's database is updated with DDL commands on tables populated with live data.
+
 Themes & Takeaways
 -------------
 
