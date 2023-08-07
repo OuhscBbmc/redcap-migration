@@ -2,9 +2,17 @@ Migrating Existing REDCap Instance to New Server
 =====================
 
 * REDCapCon Sept 2023, Seatle WA
-* Will Beasley, Thomas Wilson, Caxton Muchano, University of Oklahoma Health Science Center
-* Patrick Sandin, April Dickson, University of Oklahoma IT
-* Greg Neils, MGB
+* Will Beasley<sup>1</sup>,
+  Thomas Wilson<sup>1</sup>,
+  Greg Neils<sup>2</sup>,
+  Caxton Muchano<sup>1</sup>,
+  Patrick Sandin<sup>3</sup>,
+  April Dickson<sup>3</sup>
+
+* Affiliations:
+  <sup>1</sup>[University of Oklahoma Health Science Center, Biomedical and Behavioral Methodology Core](https://www.ouhsc.edu/bbmc/),
+  <sup>2</sup>[Mass General Brigham](https://rc.partners.org/research-apps-and-services/collect-data),
+  <sup>3</sup>[University of Oklahoma IT](https://www.ou.edu/ouit).
 
 This presentation is a summary of the detailed instructions at
 <https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md>.
@@ -76,16 +84,24 @@ Requests to Campus IT for networking
 
 * firewall exception for `prod-2-web` to `prod-2-db`
 * firewall exception for `prod-2-web` to REDCap's Community site (to download upgrades)
-* firewall exception for `prod-2-web` to the Edocs location.
+* firewall exception for `prod-2-web` to the edocs location.
 * firewall exception for `token-guide-1` to `prod-2-db` (optional -- for token server below)
 * load balancer   -- but wait until both servers are secured for PHI!
 
 Strategy for transferring files
 ------------
 
-* You may need to move some new files to both RHEL servers, such as the (a) REDCap installation files to the web server, (b) SQL scripts to install & upgrade the database, and (c) configuration files.
-* It is a small security risk to allow the servers to access a bunch of external servers.  It's also tedious to submit a ticket for each new firewall exception.
-* Instead, use your local desktop as the middleman.  Download the files to your desktop first, and then transfer them to the server with a protocol like [scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).  If the local machine is Windows, a program like [WinSCP](https://winscp.net/eng/index.php) makes this an easy drag & drop.
+* You may need to move some new files to both RHEL servers, such as the
+  (a) REDCap installation files to the web server,
+  (b) SQL scripts to install & upgrade the database, and
+  (c) configuration files.
+* It is a small security risk to allow the servers to access a bunch of external servers.
+  It's also tedious to submit a ticket for each new firewall exception.
+* Instead, use your local desktop as the middleman.
+  Download the files to your desktop first, and then transfer them to the server with a protocol like
+  [scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
+  If the local machine is Windows, a program like
+  [WinSCP](https://winscp.net/eng/index.php) makes this an easy drag & drop.
 
 Install GNOME (optional for Linux)
 ------------
@@ -96,7 +112,8 @@ Install GNOME (optional for Linux)
 
 Cons of desktop environment:
 
-* Installing a desktop environment increases the vulnerability surface and therefore theoretically increases risk.
+* Installing a desktop environment increases the vulnerability surface and
+  therefore theoretically increases risk.
   (Like installing almost any additional software.)
   But that risk is probably minimal.
 
@@ -108,7 +125,7 @@ Pros of desktop environment:
   because they'll be less likely to make mistakes
   (eg, moving a sensitive file into the wrong directory).
 
-Separate "Upgrade" and "Migrate":
+Separate "Upgrade" step and "Migrate" step
 ------------
 
 * Reason: don't change two things at once.
