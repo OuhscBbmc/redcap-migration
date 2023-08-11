@@ -17,6 +17,12 @@ Migrating Existing REDCap Instance to New Server
 This presentation is a summary of the detailed instructions at
 <https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md>.
 
+Description for Agenda
+-------------------
+
+A live migration might be completed in 12 hours, but it requires months of resource allocation, planning, and practicing.
+We discuss strategies for minimizing risk and downtime as you move an established REDCap instance to new hardware.
+
 Background
 -------------------
 
