@@ -65,3 +65,4 @@ Links
 
 * [tentative schedule](https://redcap.vanderbilt.edu/surveys/?__report=RPK8CL8NETYCXEYK)
 * [about REDCapCon](https://projectredcap.org/about/redcapcon/)
+* [REDCapCon 2023](https://web.cvent.com/event/ed9e9291-7d19-4eb9-9011-a8129eae1402/summary)
