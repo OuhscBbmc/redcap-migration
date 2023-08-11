@@ -5,13 +5,13 @@ Migrating Existing REDCap Instance to New Server
 * Will Beasley<sup>1</sup>,
   Thomas Wilson<sup>1</sup>,
   Greg Neils<sup>2</sup>,
-  Caxton Muchano<sup>1</sup>,
+  Caxton Muchono<sup>1</sup>,
   Patrick Sandin<sup>3</sup>,
   April Dickson<sup>3</sup>
 
 * Affiliations:
   <sup>1</sup>[University of Oklahoma Health Science Center, Biomedical and Behavioral Methodology Core](https://www.ouhsc.edu/bbmc/),
-  <sup>2</sup>[Mass General Brigham](https://rc.partners.org/research-apps-and-services/collect-data),
+  <sup>2</sup>[Mass General Brigham, RISC](https://rc.partners.org/research-apps-and-services/collect-data),
   <sup>3</sup>[University of Oklahoma IT](https://www.ou.edu/ouit).
 
 This presentation is a summary of the detailed instructions at
@@ -48,6 +48,8 @@ Background
 
 * We'll cover migrating from a local server to another local server.
   See Greg & MGB's later presentation on unique challenges of migrating to Azure.
+  It will cover unique challenges of Azure migration,
+  after a larger discussion of hosting REDCap in Azure.
 
 * Suggestions are welcome.
   Consider if there are better ways to accomplish these goals,
@@ -66,6 +68,8 @@ Today's definition of "migration"
     * See Greg's Azure migration presentation
   * url of the server, possibly
 
+<!-- decision point about using new PHP files or copying from old server -->
+
 First establish stack underneath REDCap
 -------------------
 
@@ -82,13 +86,16 @@ First establish stack underneath REDCap
 Requests to Campus IT for networking
 ------------
 
+This can be a headache to get all the point-to-point connections
+correct the first time.
+
 * firewall exception for `prod-2-web` to `prod-2-db`
 * firewall exception for `prod-2-web` to REDCap's Community site (to download upgrades)
 * firewall exception for `prod-2-web` to the edocs location.
 * firewall exception for `token-guide-1` to `prod-2-db` (optional -- for token server below)
 * load balancer   -- but wait until both servers are secured for PHI!
 
-Strategy for transferring files
+Strategy for transferring PHP & config files
 ------------
 
 * You may need to move some new files to both RHEL servers, such as the
@@ -97,11 +104,22 @@ Strategy for transferring files
   (c) configuration files.
 * It is a small security risk to allow the servers to access a bunch of external servers.
   It's also tedious to submit a ticket for each new firewall exception.
-* Instead, use your local desktop as the middleman.
+* Ideally, use your local desktop as the middleman.
   Download the files to your desktop first, and then transfer them to the server with a protocol like
   [scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
-  If the local machine is Windows, a program like
-  [WinSCP](https://winscp.net/eng/index.php) makes this an easy drag & drop.
+  If the local machine is Windows, programs like
+  [Robocopy](https://en.wikipedia.org/wiki/Robocopy) and
+  [WinSCP](https://winscp.net/eng/index.php) make this an easy drag & drop.
+* If you're using Windows & RDP (or Linux & ssh windows),
+  you can just copy & paste across machines.
+
+Strategy for transferring PHI files
+------------
+
+* Specifically, edocs & database.
+* Similar to transferring config files, but
+  use a file share (or AWS S3 bucket or Azure container)
+* The security implications....
 
 Install GNOME (optional for Linux)
 ------------
@@ -109,6 +127,8 @@ Install GNOME (optional for Linux)
 * Institutions staffed with enough Linux experts will not need a desktop environment.
   But if the REDCap admins are coming from Windows,
   something like [GNOME](https://www.gnome.org/) may be desirable.
+
+<!-- vs command line -->
 
 Cons of desktop environment:
 
@@ -133,6 +153,32 @@ Separate "Upgrade" step and "Migrate" step
 * Ideally upgrade your old instance before migrating
 * If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems.
 * Remember that REDCap's database is updated with DDL commands on tables populated with live data.
+
+<!-- explain DDL -->
+
+<!-- frequent VM snapshots for repeated practice and for catastrophic-->
+
+<!-- practice 3 or 4 times so the real migration is quick and the server is offline a short amount of time.-->
+
+Realistic Timelines
+-------------
+
+Working backwards:
+
+* Go live migration: 12 hours
+* Developing the specific steps & practicing four times: 4 weeks
+* Prep: 6-18 months
+  * Buy in from leaders and IT department
+  * Budget allocation & financing
+  * Getting the right humans involved
+  * Acquiring hardware or SLA
+  * Reading & meeting regulations & IT policies
+  * Infrastructure, such as network firewalls & user authentication
+
+* Choose a window to migrate.  It's a balance between
+  * affecting the users the least (such as 3am on a slow weekend during the summer).
+  * having the right IT support in case it goes wrong (such as a fixing network config).
+  * A compromise might be 9am
 
 Themes & Takeaways
 -------------
