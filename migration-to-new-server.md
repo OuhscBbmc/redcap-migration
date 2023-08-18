@@ -17,13 +17,13 @@ Migrating Existing REDCap Instance to New Server
 This presentation is a summary of the detailed instructions at
 <https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md>.
 
-Description for Agenda
+Description for Agenda {Will}
 -------------------
 
 A live migration might be completed in 12 hours, but it requires months of resource allocation, planning, and practicing.
 We discuss strategies for minimizing risk and downtime as you move an established REDCap instance to new hardware.
 
-Background
+Background {Will}
 -------------------
 
 * This summarizes a REDCap upgrade from an old Windows instance to a new RHEL instance.
@@ -61,7 +61,7 @@ Background
   Consider if there are better ways to accomplish these goals,
   or clearer ways to communicate the ideas.
 
-Today's definition of "migration"
+Today's definition of "migration" {Will}
 ---------
 
 * database & edocs files are moved.
@@ -76,7 +76,7 @@ Today's definition of "migration"
 
 <!-- decision point about using new PHP files or copying from old server -->
 
-First establish stack underneath REDCap
+First establish stack underneath REDCap  {Thomas}
 -------------------
 
 * Create VMs for database & web server (and optional token server)
@@ -89,7 +89,7 @@ First establish stack underneath REDCap
 * Install GNOME (optional for Linux)
 * Install DBeaver (assuming on some RHEL VM)
 
-Requests to Campus IT for networking
+Requests to Campus IT for networking {Thomas}
 ------------
 
 This can be a headache to get all the point-to-point connections
@@ -101,7 +101,7 @@ correct the first time.
 * firewall exception for `token-guide-1` to `prod-2-db` (optional -- for token server below)
 * load balancer   -- but wait until both servers are secured for PHI!
 
-Strategy for transferring PHP & config files
+Strategy for transferring PHP & config files {Thomas}
 ------------
 
 * You may need to move some new files to both RHEL servers, such as the
@@ -119,7 +119,7 @@ Strategy for transferring PHP & config files
 * If you're using Windows & RDP (or Linux & ssh windows),
   you can just copy & paste across machines.
 
-Strategy for transferring PHI files
+Strategy for transferring PHI files {Thomas}
 ------------
 
 * Specifically, edocs & database.
@@ -127,7 +127,7 @@ Strategy for transferring PHI files
   use a file share (or AWS S3 bucket or Azure container)
 * The security implications....
 
-Install GNOME (optional for Linux)
+Install GNOME (optional for Linux) {Thomas}
 ------------
 
 * Institutions staffed with enough Linux experts will not need a desktop environment.
@@ -151,7 +151,7 @@ Pros of desktop environment:
   because they'll be less likely to make mistakes
   (eg, moving a sensitive file into the wrong directory).
 
-Separate "Upgrade" step and "Migrate" step
+Separate "Upgrade" step and "Migrate" step {Thomas}
 ------------
 
 * Reason: don't change two things at once.
@@ -166,7 +166,7 @@ Separate "Upgrade" step and "Migrate" step
 
 <!-- practice 3 or 4 times so the real migration is quick and the server is offline a short amount of time.-->
 
-Realistic Timelines
+Realistic Timelines {Greg}
 -------------
 
 Working backwards:
@@ -186,7 +186,7 @@ Working backwards:
   * having the right IT support in case it goes wrong (such as a fixing network config).
   * A compromise might be 9am
 
-Themes & Takeaways
+Themes & Takeaways {Greg}
 -------------
 
 * Practice many times on a test/dev instance
@@ -200,8 +200,9 @@ Themes & Takeaways
   * authentication
   * REDCap version
   * hardware
-  * OS.
-    Linux may be easier than Windows if you're more comfortable with bash than PowerShell.
-    Or vice versa.
-    If you're installing on Windows with the GUI (not with PowerShell),
-    take screenshots of your steps when you practice.
+  * OS
+    * Linux may be easier than Windows if you're more comfortable with bash than PowerShell.
+      Or vice versa.
+    * If you're installing on Windows with the GUI (not with PowerShell),
+      take screenshots of your steps when you practice.
+      If there's a tricky/subtle option, overlay the screenshot with a big red circle/arrow.
