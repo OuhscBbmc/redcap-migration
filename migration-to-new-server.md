@@ -61,11 +61,16 @@ Background {Will}
   Consider if there are better ways to accomplish these goals,
   or clearer ways to communicate the ideas.
 
-Today's definition of "migration" {Will}
+Today's definition of migration {Will}
 ---------
 
-* database & edocs files are moved.
-* Everything else is brand new, including:
+When we say "migration", we mean transitioning from one (db+web) server to another.
+
+* Data files are moved (ie, database & edocs)
+
+* Decide about the supporting files:
+
+* Option 1 -Everything else is brand new, including:
   * database server & maybe even the database engine
   * REDCap's PHP files
   * config files (eg, php.ini & apache.config)
@@ -74,7 +79,22 @@ Today's definition of "migration" {Will}
     * See Greg's Azure migration presentation
   * url of the server, possibly
 
-<!-- decision point about using new PHP files or copying from old server -->
+* Option 2 -Copy existing REDCap's PHP & config files
+  * Possible only if components are the same:
+    * OS
+    * database engine
+    * web server
+    * authentication system
+
+Bring a friend {Will}
+---------
+
+* To spread the misery around
+* More eyes & different skills
+
+<!-- finish this slide later -->
+
+<!-- picture of Buzz & Woody -->
 
 First establish stack underneath REDCap  {Thomas}
 -------------------
@@ -130,11 +150,14 @@ Strategy for transferring PHI files {Thomas}
 Install GNOME (optional for Linux) {Thomas}
 ------------
 
-* Institutions staffed with enough Linux experts will not need a desktop environment.
-  But if the REDCap admins are coming from Windows,
-  something like [GNOME](https://www.gnome.org/) may be desirable.
+* Institutions staffed with Linux experts might prefer to use only the command line.
+  They might not need/want a desktop environment
+  <!-- include screenshot of command line -->
 
-<!-- vs command line -->
+* However other less experienced admins (like us) benefited from using a mouse for some tasks.
+  So we installed the [GNOME](https://www.gnome.org/) desktop environment.
+  Consider this if the REDCap admins are coming from Windows.
+  <!-- include screenshot of GNOME -->
 
 Cons of desktop environment:
 
@@ -159,12 +182,19 @@ Separate "Upgrade" step and "Migrate" step {Thomas}
 * Ideally upgrade your old instance before migrating
 * If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems.
 * Remember that REDCap's database is updated with DDL commands on tables populated with live data.
+  (*D*ata *D*efinition *L*anguage is the subset of SQL that creates & modifies the structure of the database,
+  not the data itself.)
 
-<!-- explain DDL -->
+Practice Migration & Backup Frequently
+-------------
 
-<!-- frequent VM snapshots for repeated practice and for catastrophic-->
+* Practice:
+  * We strongly encourage you to practice the migration 4+ times.
+  * Don't start a live migration until you complete 1+ smooth practice run.
 
-<!-- practice 3 or 4 times so the real migration is quick and the server is offline a short amount of time.-->
+* Backups:
+  * We preferred VM snapshots over database backups.
+  * Regardless of the method, backup frequently.
 
 Realistic Timelines {Greg}
 -------------
