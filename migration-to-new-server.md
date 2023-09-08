@@ -85,12 +85,18 @@ When we say "migration", we mean transitioning from one (db+web) server to anoth
     * database engine
     * web server
     * authentication system
+  * Yet minor, but important, modifications might arise, such as:
+    * error log location
+    * PHP directory
 
-Bring a friend {Will}
+Bring a friend {Thomas}
 ---------
 
 * To spread the misery around
 * More eyes & different skills
+* Being socially isolated leads to unhappiness & mistakes
+* Leverage everyone's different perspective & experience
+* The interpersonal conversations can lead to solutions that no one was aware of initially.
 
 <!-- finish this slide later -->
 
@@ -144,10 +150,34 @@ Strategy for transferring PHI files {Thomas}
 
 * Specifically, edocs & database.
 * Similar to transferring config files, but
-  use a file share (or AWS S3 bucket or Azure container)
-* The security implications....
+  use an institutional file share (or AWS S3 bucket or Azure container)
+* The security implications:
+  * Make sure every waypoint is secure as the files jump between machines.
+  * Remember to remove PHI files from all intermediary stops.
 
-Install GNOME (optional for Linux) {Thomas}
+Separate "Upgrade" step and "Migrate" step {Thomas}
+------------
+
+* Reason: don't change two things at once to help isolate & address subtle problems.
+* Don't upgrade & migrate in the same step (eg, from v13.1.0 on local to v14.1.0 in the cloud)
+* Ideally upgrade your old instance before migrating
+* If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems.
+* Remember that REDCap's database is updated with DDL commands on tables populated with live data.
+  (*D*ata *D*efinition *L*anguage is the subset of SQL that creates & modifies the structure of the database,
+  not the data itself.)
+
+Practice Migration & Backup Frequently {Thomas}
+-------------
+
+* Practice:
+  * We strongly encourage you to practice the migration 4+ times.
+  * Don't start a live migration until you complete 1+ smooth practice run.
+
+* Backups:
+  * We preferred VM snapshots over database backups.
+  * Regardless of the method, backup frequently.
+
+Install GNOME (optional for Linux) {Will}
 ------------
 
 * Institutions staffed with Linux experts might prefer to use only the command line.
@@ -174,34 +204,12 @@ Pros of desktop environment:
   because they'll be less likely to make mistakes
   (eg, moving a sensitive file into the wrong directory).
 
-Separate "Upgrade" step and "Migrate" step {Thomas}
-------------
-
-* Reason: don't change two things at once.
-* Don't upgrade & migrate in the same step (eg, from v13.1.0 on local to v14.1.0 in the cloud)
-* Ideally upgrade your old instance before migrating
-* If you migrate before you upgrade, consider staying on the old version for a few weeks before you upgrade.  It helps identify location of problems.
-* Remember that REDCap's database is updated with DDL commands on tables populated with live data.
-  (*D*ata *D*efinition *L*anguage is the subset of SQL that creates & modifies the structure of the database,
-  not the data itself.)
-
-Practice Migration & Backup Frequently
--------------
-
-* Practice:
-  * We strongly encourage you to practice the migration 4+ times.
-  * Don't start a live migration until you complete 1+ smooth practice run.
-
-* Backups:
-  * We preferred VM snapshots over database backups.
-  * Regardless of the method, backup frequently.
-
 Realistic Timelines {Greg}
 -------------
 
 Working backwards:
 
-* Go live migration: 12 hours
+* Go live migration when REDCap is offline: 4-12 hours
 * Developing the specific steps & practicing four times: 4 weeks
 * Prep: 6-18 months
   * Buy in from leaders and IT department
@@ -210,6 +218,8 @@ Working backwards:
   * Acquiring hardware or SLA
   * Reading & meeting regulations & IT policies
   * Infrastructure, such as network firewalls & user authentication
+  * Configuring machines & network
+  * Feedback from your questions on REDCap's Community forum.
 
 * Choose a window to migrate.  It's a balance between
   * affecting the users the least (such as 3am on a slow weekend during the summer).
@@ -224,7 +234,7 @@ Themes & Takeaways {Greg}
   * It's tedious, but very helpful when you're running through it a few times
     and forget if you did something for the current practice run, or the previous practice run.
   * It's much quicker in the long run.
-* Our scripts are a starting point, but you'll need your own document
+* Our [Linux scripts](https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md) are a starting point, but you'll need to fork your own document
 * Every institution's setup is different, including:
   * network topology
   * authentication
