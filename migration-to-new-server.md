@@ -98,8 +98,6 @@ Bring a friend 🥋
 * Leverage everyone's different perspective & experience
 * The interpersonal conversations can lead to solutions that no one was aware of initially.
 
-<!-- finish this slide later -->
-
 <!-- picture of Buzz & Woody -->
 
 First establish stack underneath REDCap 🥋
@@ -182,12 +180,14 @@ Install GNOME (optional for Linux) 🌳
 
 * Institutions staffed with Linux experts might prefer to use only the command line.
   They might not need/want a desktop environment
-  <!-- include screenshot of command line -->
+
+  ![files in bash](images/bash.png)
 
 * However other less experienced admins (like us) benefited from using a mouse for some tasks.
   So we installed the [GNOME](https://www.gnome.org/) desktop environment.
   Consider this if the REDCap admins are coming from Windows.
-  <!-- include screenshot of GNOME -->
+
+  ![files in GNOME](images/gnome.png)
 
 Cons of desktop environment:
 
