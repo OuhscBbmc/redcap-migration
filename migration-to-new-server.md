@@ -17,13 +17,13 @@ Migrating Existing REDCap Instance to New Server
 This presentation is a summary of the detailed instructions at
 <https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md>.
 
-Description for Agenda {Will}
+Description for Agenda 🌳
 -------------------
 
 A live migration might be completed in 12 hours, but it requires months of resource allocation, planning, and practicing.
 We discuss strategies for minimizing risk and downtime as you move an established REDCap instance to new hardware.
 
-Background {Will}
+Background 🌳
 -------------------
 
 * This summarizes a REDCap upgrade from an old Windows instance to a new RHEL instance.
@@ -61,7 +61,7 @@ Background {Will}
   Consider if there are better ways to accomplish these goals,
   or clearer ways to communicate the ideas.
 
-Today's definition of migration {Will}
+Today's definition of migration 🌳
 ---------
 
 When we say "migration", we mean transitioning from one (db+web) server to another.
@@ -89,7 +89,7 @@ When we say "migration", we mean transitioning from one (db+web) server to anoth
     * error log location
     * PHP directory
 
-Bring a friend {Thomas}
+Bring a friend 🥋
 ---------
 
 * To spread the misery around
@@ -102,7 +102,7 @@ Bring a friend {Thomas}
 
 <!-- picture of Buzz & Woody -->
 
-First establish stack underneath REDCap  {Thomas}
+First establish stack underneath REDCap 🥋
 -------------------
 
 * Create VMs for database & web server (and optional token server)
@@ -115,7 +115,7 @@ First establish stack underneath REDCap  {Thomas}
 * Install GNOME (optional for Linux)
 * Install DBeaver (assuming on some RHEL VM)
 
-Requests to Campus IT for networking {Thomas}
+Requests to Campus IT for networking 🥋
 ------------
 
 This can be a headache to get all the point-to-point connections
@@ -127,7 +127,7 @@ correct the first time.
 * firewall exception for `token-guide-1` to `prod-2-db` (optional -- for token server below)
 * load balancer   -- but wait until both servers are secured for PHI!
 
-Strategy for transferring PHP & config files {Thomas}
+Strategy for transferring PHP & config files 🥋
 ------------
 
 * You may need to move some new files to both RHEL servers, such as the
@@ -145,7 +145,7 @@ Strategy for transferring PHP & config files {Thomas}
 * If you're using Windows & RDP (or Linux & ssh windows),
   you can just copy & paste across machines.
 
-Strategy for transferring PHI files {Thomas}
+Strategy for transferring PHI files 🥋
 ------------
 
 * Specifically, edocs & database.
@@ -155,7 +155,7 @@ Strategy for transferring PHI files {Thomas}
   * Make sure every waypoint is secure as the files jump between machines.
   * Remember to remove PHI files from all intermediary stops.
 
-Separate "Upgrade" step and "Migrate" step {Thomas}
+Separate "Upgrade" step and "Migrate" step 🥋
 ------------
 
 * Reason: don't change two things at once to help isolate & address subtle problems.
@@ -166,7 +166,7 @@ Separate "Upgrade" step and "Migrate" step {Thomas}
   (*D*ata *D*efinition *L*anguage is the subset of SQL that creates & modifies the structure of the database,
   not the data itself.)
 
-Practice Migration & Backup Frequently {Thomas}
+Practice Migration & Backup Frequently 🥋
 -------------
 
 * Practice:
@@ -177,7 +177,7 @@ Practice Migration & Backup Frequently {Thomas}
   * We preferred VM snapshots over database backups.
   * Regardless of the method, backup frequently.
 
-Install GNOME (optional for Linux) {Will}
+Install GNOME (optional for Linux) 🌳
 ------------
 
 * Institutions staffed with Linux experts might prefer to use only the command line.
@@ -204,7 +204,7 @@ Pros of desktop environment:
   because they'll be less likely to make mistakes
   (eg, moving a sensitive file into the wrong directory).
 
-Realistic Timelines {Greg}
+Realistic Timelines 🏁
 -------------
 
 Working backwards:
@@ -226,7 +226,7 @@ Working backwards:
   * having the right IT support in case it goes wrong (such as a fixing network config).
   * A compromise might be 9am
 
-Themes & Takeaways {Greg}
+Themes & Takeaways 🏁
 -------------
 
 * Practice many times on a test/dev instance

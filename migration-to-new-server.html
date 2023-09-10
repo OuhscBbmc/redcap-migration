@@ -53,12 +53,12 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Affiliations: <sup>1</sup><a href="https://www.ouhsc.edu/bbmc/">University of Oklahoma Health Science Center, Biomedical and Behavioral Methodology Core</a>, <sup>2</sup><a href="https://rc.partners.org/research-apps-and-services/collect-data">Mass General Brigham, RISC</a>, <sup>3</sup><a href="https://www.ou.edu/ouit">University of Oklahoma IT</a>.</p></li>
 </ul>
 <p>This presentation is a summary of the detailed instructions at <a href="https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md" class="uri">https://github.com/OuhscBbmc/redcap-migration/blob/main/sources/redcap-installation-public-oklahoma.md</a>.</p>
-<section id="description-for-agenda-will" class="level2">
-<h2 class="anchored" data-anchor-id="description-for-agenda-will">Description for Agenda {Will}</h2>
+<section id="description-for-agenda" class="level2">
+<h2 class="anchored" data-anchor-id="description-for-agenda">Description for Agenda 🌳</h2>
 <p>A live migration might be completed in 12 hours, but it requires months of resource allocation, planning, and practicing. We discuss strategies for minimizing risk and downtime as you move an established REDCap instance to new hardware.</p>
 </section>
-<section id="background-will" class="level2">
-<h2 class="anchored" data-anchor-id="background-will">Background {Will}</h2>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background 🌳</h2>
 <ul>
 <li><p>This summarizes a REDCap upgrade from an old Windows instance to a new RHEL instance.</p>
 <ul>
@@ -78,8 +78,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Suggestions are welcome. Consider if there are better ways to accomplish these goals, or clearer ways to communicate the ideas.</p></li>
 </ul>
 </section>
-<section id="todays-definition-of-migration-will" class="level2">
-<h2 class="anchored" data-anchor-id="todays-definition-of-migration-will">Today’s definition of migration {Will}</h2>
+<section id="todays-definition-of-migration" class="level2">
+<h2 class="anchored" data-anchor-id="todays-definition-of-migration">Today’s definition of migration 🌳</h2>
 <p>When we say “migration”, we mean transitioning from one (db+web) server to another.</p>
 <ul>
 <li><p>Data files are moved (ie, database &amp; edocs)</p></li>
@@ -113,8 +113,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="bring-a-friend-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="bring-a-friend-thomas">Bring a friend {Thomas}</h2>
+<section id="bring-a-friend" class="level2">
+<h2 class="anchored" data-anchor-id="bring-a-friend">Bring a friend 🥋</h2>
 <ul>
 <li>To spread the misery around</li>
 <li>More eyes &amp; different skills</li>
@@ -125,8 +125,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- finish this slide later -->
 <!-- picture of Buzz & Woody -->
 </section>
-<section id="first-establish-stack-underneath-redcap-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="first-establish-stack-underneath-redcap-thomas">First establish stack underneath REDCap {Thomas}</h2>
+<section id="first-establish-stack-underneath-redcap" class="level2">
+<h2 class="anchored" data-anchor-id="first-establish-stack-underneath-redcap">First establish stack underneath REDCap 🥋</h2>
 <ul>
 <li>Create VMs for database &amp; web server (and optional token server)</li>
 <li>Install Apache (on the web server)</li>
@@ -139,8 +139,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Install DBeaver (assuming on some RHEL VM)</li>
 </ul>
 </section>
-<section id="requests-to-campus-it-for-networking-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="requests-to-campus-it-for-networking-thomas">Requests to Campus IT for networking {Thomas}</h2>
+<section id="requests-to-campus-it-for-networking" class="level2">
+<h2 class="anchored" data-anchor-id="requests-to-campus-it-for-networking">Requests to Campus IT for networking 🥋</h2>
 <p>This can be a headache to get all the point-to-point connections correct the first time.</p>
 <ul>
 <li>firewall exception for <code>prod-2-web</code> to <code>prod-2-db</code></li>
@@ -150,8 +150,8 @@ ul.task-list li input[type="checkbox"] {
 <li>load balancer – but wait until both servers are secured for PHI!</li>
 </ul>
 </section>
-<section id="strategy-for-transferring-php-config-files-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="strategy-for-transferring-php-config-files-thomas">Strategy for transferring PHP &amp; config files {Thomas}</h2>
+<section id="strategy-for-transferring-php-config-files" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-for-transferring-php-config-files">Strategy for transferring PHP &amp; config files 🥋</h2>
 <ul>
 <li>You may need to move some new files to both RHEL servers, such as the
 <ol type="a">
@@ -164,8 +164,8 @@ ul.task-list li input[type="checkbox"] {
 <li>If you’re using Windows &amp; RDP (or Linux &amp; ssh windows), you can just copy &amp; paste across machines.</li>
 </ul>
 </section>
-<section id="strategy-for-transferring-phi-files-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="strategy-for-transferring-phi-files-thomas">Strategy for transferring PHI files {Thomas}</h2>
+<section id="strategy-for-transferring-phi-files" class="level2">
+<h2 class="anchored" data-anchor-id="strategy-for-transferring-phi-files">Strategy for transferring PHI files 🥋</h2>
 <ul>
 <li>Specifically, edocs &amp; database.</li>
 <li>Similar to transferring config files, but use an institutional file share (or AWS S3 bucket or Azure container)</li>
@@ -176,8 +176,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="separate-upgrade-step-and-migrate-step-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="separate-upgrade-step-and-migrate-step-thomas">Separate “Upgrade” step and “Migrate” step {Thomas}</h2>
+<section id="separate-upgrade-step-and-migrate-step" class="level2">
+<h2 class="anchored" data-anchor-id="separate-upgrade-step-and-migrate-step">Separate “Upgrade” step and “Migrate” step 🥋</h2>
 <ul>
 <li>Reason: don’t change two things at once to help isolate &amp; address subtle problems.</li>
 <li>Don’t upgrade &amp; migrate in the same step (eg, from v13.1.0 on local to v14.1.0 in the cloud)</li>
@@ -186,8 +186,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Remember that REDCap’s database is updated with DDL commands on tables populated with live data. (<em>D</em>ata <em>D</em>efinition <em>L</em>anguage is the subset of SQL that creates &amp; modifies the structure of the database, not the data itself.)</li>
 </ul>
 </section>
-<section id="practice-migration-backup-frequently-thomas" class="level2">
-<h2 class="anchored" data-anchor-id="practice-migration-backup-frequently-thomas">Practice Migration &amp; Backup Frequently {Thomas}</h2>
+<section id="practice-migration-backup-frequently" class="level2">
+<h2 class="anchored" data-anchor-id="practice-migration-backup-frequently">Practice Migration &amp; Backup Frequently 🥋</h2>
 <ul>
 <li>Practice:
 <ul>
@@ -201,8 +201,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="install-gnome-optional-for-linux-will" class="level2">
-<h2 class="anchored" data-anchor-id="install-gnome-optional-for-linux-will">Install GNOME (optional for Linux) {Will}</h2>
+<section id="install-gnome-optional-for-linux" class="level2">
+<h2 class="anchored" data-anchor-id="install-gnome-optional-for-linux">Install GNOME (optional for Linux) 🌳</h2>
 <ul>
 <li><p>Institutions staffed with Linux experts might prefer to use only the command line. They might not need/want a desktop environment <!-- include screenshot of command line --></p></li>
 <li><p>However other less experienced admins (like us) benefited from using a mouse for some tasks. So we installed the <a href="https://www.gnome.org/">GNOME</a> desktop environment. Consider this if the REDCap admins are coming from Windows. <!-- include screenshot of GNOME --></p></li>
@@ -217,8 +217,8 @@ ul.task-list li input[type="checkbox"] {
 <li>A desktop environment might <em>decrease</em> the practical risk among new Linux admins, because they’ll be less likely to make mistakes (eg, moving a sensitive file into the wrong directory).</li>
 </ul>
 </section>
-<section id="realistic-timelines-greg" class="level2">
-<h2 class="anchored" data-anchor-id="realistic-timelines-greg">Realistic Timelines {Greg}</h2>
+<section id="realistic-timelines" class="level2">
+<h2 class="anchored" data-anchor-id="realistic-timelines">Realistic Timelines 🏁</h2>
 <p>Working backwards:</p>
 <ul>
 <li>Go live migration when REDCap is offline: 4-12 hours</li>
@@ -242,8 +242,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="themes-takeaways-greg" class="level2">
-<h2 class="anchored" data-anchor-id="themes-takeaways-greg">Themes &amp; Takeaways {Greg}</h2>
+<section id="themes-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="themes-takeaways">Themes &amp; Takeaways 🏁</h2>
 <ul>
 <li>Practice many times on a test/dev instance</li>
 <li>Document every single command.
